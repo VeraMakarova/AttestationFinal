@@ -1,6 +1,7 @@
 package ru.inno.course.db;
 
 import ru.inno.course.db.model.CompanyDB;
+import ru.inno.course.db.model.EmployeeDB;
 
 import java.sql.SQLException;
 
@@ -14,6 +15,7 @@ public interface XClientsRepository {
     void updateCompanyIsActivaFalse (int id) throws SQLException;
     void updateEmployeeIsActiveFalse(int id) throws SQLException;
     CompanyDB getCompanyDBById(int id) throws SQLException;
+    EmployeeDB getEmployeeDBById(int id) throws SQLException;
 
 
 

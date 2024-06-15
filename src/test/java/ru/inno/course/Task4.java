@@ -1,7 +1,11 @@
 package ru.inno.course;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.inno.course.db.XClientsRepository;
 import ru.inno.course.db.XClientsRepositoryJDBC;
@@ -11,6 +15,7 @@ import ru.inno.course.web.XClientsWebClient;
 
 import java.sql.SQLException;
 
+import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Task4 {
@@ -21,9 +26,6 @@ public class Task4 {
     private String dbUser;
     private String dbPassword;
     private int companyId;
-    private String token;
-    private String xClientsLogin;
-    private String xClientsPassword;
 
     @BeforeEach
     public void setUp() throws SQLException {
@@ -33,9 +35,6 @@ public class Task4 {
         repository = new XClientsRepositoryJDBC(connectionString, dbUser, dbPassword);
         companyName = ConfigHelper.getcCompanyName();
         client = new XClientsWebClient();
-        xClientsLogin = ConfigHelper.getXClientsLogin();
-        xClientsPassword = ConfigHelper.getXClientsPassword();
-        token = client.getToken(xClientsLogin, xClientsPassword);
     }
 
     @AfterEach
@@ -45,12 +44,27 @@ public class Task4 {
     }
 
     @Test
-    public void checkDeletedCompany() throws SQLException, InterruptedException {
-        companyId = repository.createCompanyDB(companyName);
-        client.deleteCompany(companyId);
-        Thread.sleep(5000L);
-        CompanyDB companyDB = repository.getCompanyDBById(companyId);
-        assertNotEquals(null, companyDB.deletedAt());
+    @DisplayName("Удаленная компания в базе данных")
+    @Description("Проверяем, что у удаленной компании проставляется в БД поле deletedAt")
+    @Severity(SeverityLevel.CRITICAL)
+    public void checkDeletedCompany() {
+        companyId = step("Создать компанию в БД", () -> repository.createCompanyDB(companyName));
+        step("Удалить эту компанию через приложение", () -> client.deleteCompany(companyId));
+        step("Подождать, пока изменения отобразятся в БД", () -> Thread.sleep(5000L));
+        CompanyDB companyDB =
+                step("Получить сведения о компании из БД", () -> repository.getCompanyDBById(companyId));
+        step("Проверить, что поле deletedAt не пустое",
+                () -> assertNotEquals(null, companyDB.deletedAt()));
     }
 
+    @Test
+    @DisplayName("Неудаленная компания в базе данных")
+    @Description("Проверяем, что у неудаленной компании в БД поле deletedAt пустое")
+    @Severity(SeverityLevel.CRITICAL)
+    public void checkNotDeletedCompany() {
+        companyId = step("Создать компанию в БД", () -> repository.createCompanyDB(companyName));
+        CompanyDB companyDB =
+                step("Получить сведения о компании из БД", () -> repository.getCompanyDBById(companyId));
+        step("Проверить, что поле deletedAt пустое", () -> assertEquals(null, companyDB.deletedAt()));
+    }
 }

@@ -1,7 +1,11 @@
 package ru.inno.course;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.inno.course.db.XClientsRepository;
 import ru.inno.course.db.XClientsRepositoryJDBC;
@@ -13,6 +17,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -41,27 +46,32 @@ public class Task1 {
     }
 
     @Test
+    @DisplayName("Фильтрация компаний по active")
+    @Description("Проверяем, что список компаний фильтруется по параметру active")
+    @Severity(SeverityLevel.NORMAL)
     void iCanFilterCompaniesByIsActive() throws SQLException {
         int[] testCompanies = new int[4];
         for (int i = 0; i < testCompanies.length; i++) {
-            testCompanies[i] = repository.createCompanyDB(companyName);
+            testCompanies[i] =  step("Создать компанию в БД", () -> repository.createCompanyDB(companyName));
         }
 
-        repository.updateCompanyIsActivaFalse(testCompanies[0]);
-        repository.updateCompanyIsActivaFalse(testCompanies[2]);
+        step("Деактивировать компанию 1 в БД", () -> repository.updateCompanyIsActivaFalse(testCompanies[0]));
+        step("Деактивировать компанию 3 в БД", () -> repository.updateCompanyIsActivaFalse(testCompanies[2]));
 
-        List<Company> companiesList = client.getActiveCompanies(false);
+        List<Company> companiesList =
+                step("Получить список неактивных компаний", () -> client.getActiveCompanies(false));
         for (Company company : companiesList) {
-            assertTrue(!company.isActive(), "Expected company to be inactive");
+            step("Проверить, что в списке все компании неактивные", () -> assertTrue(!company.isActive()));
         }
 
-        List<Company> companiesList2 = client.getActiveCompanies(true);
+        List<Company> companiesList2 =
+                step("Получить список активных компаний", () -> client.getActiveCompanies(true));
         for (Company company : companiesList2) {
-            assertTrue(company.isActive(), "Expected company to be active");
+            step("Проверить, что все компании в списке активные", () -> assertTrue(company.isActive()));
         }
 
         for (int companyID : testCompanies) {
-            repository.deleteCompanyDBById(companyID);
+             step("Удалить компанию из БД", () -> repository.deleteCompanyDBById(companyID));
         }
     }
 

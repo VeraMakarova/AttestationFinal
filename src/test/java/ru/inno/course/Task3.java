@@ -1,7 +1,11 @@
 package ru.inno.course;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.inno.course.db.XClientsRepository;
 import ru.inno.course.db.XClientsRepositoryJDBC;
@@ -12,6 +16,7 @@ import ru.inno.course.web.model.Employee;
 import java.sql.SQLException;
 import java.util.List;
 
+import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Task3 {
@@ -42,13 +47,16 @@ public class Task3 {
     }
 
     @Test
-    public void checkInactiveEmployee2() throws SQLException, InterruptedException {
-        companyId = repository.createCompanyDB(companyName);
-        System.out.println(companyId);
-        employeeId = repository.createEmployeeDB(companyId);
-        repository.updateEmployeeIsActiveFalse(employeeId);
-        List<Employee> employeeList = client.getEmployeeList(companyId);
-        System.out.println(employeeList);
-        assertTrue(employeeList.isEmpty());
+    @DisplayName("Неактивный сотрудник отсутствует в списке")
+    @Description("Проверяем, что неактивный сотрудник не отображается в списке сотрудников компании")
+    @Severity(SeverityLevel.NORMAL)
+    public void checkInactiveEmployee() throws SQLException {
+        companyId = step("Создать компанию в БД", () -> repository.createCompanyDB(companyName));
+        employeeId = step("Создать сотрудника в эту компанию в БД", () -> repository.createEmployeeDB(companyId));
+        step("Сделать сотрудника неактивным в БД", () -> repository.updateEmployeeIsActiveFalse(employeeId));
+        List<Employee> employeeList = step("Получить список сотрудников компании",
+                () -> client.getEmployeeList(companyId));
+        step("Проверяем, что список пустой (единственный сотрудник неактивный и не должен отображаться в списке)",
+                () -> assertTrue(employeeList.isEmpty()));
     }
 }

@@ -1,5 +1,6 @@
 package ru.inno.course.web;
 
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import ru.inno.course.helper.ConfigHelper;
 import ru.inno.course.web.model.Company;
@@ -52,36 +53,21 @@ public class XClientsWebClient {
                 .getList("", Employee.class);
     }
 
-//    public int createEmployee2(int companyId) {
-//        token = getToken(xClientsLogin, xClientsPassword);
-//        CreateEmployee createEmployee = new CreateEmployee
-//                (employeeName, employeeLastName, companyId, employeeEmail, employeePhone);
-//        return given()
-//                .log().all()
-//                .body(createEmployee)
-//                .header("x-client-token", token)
-//                .contentType(ContentType.JSON)
-//                .when()
-//                .post(URL_CREATE_EMPLOYEE)
-//                .then()
-//                .log().all()
-//                .extract().path("id");
-//    }
-//
-//    public int createEmployee
-//    (String firstName, String lastName, int companyId, String email, String phone, String token) {
-//        CreateEmployee createEmployee = new CreateEmployee(firstName, lastName, companyId, email, phone);
-//        return given()
-//                .log().all()
-//                .body(createEmployee)
-//                .header("x-client-token", token)
-//                .contentType(ContentType.JSON)
-//                .when()
-//                .post(URL_CREATE_EMPLOYEE)
-//                .then()
-//                .log().all()
-//                .extract().path("id");
-//    }
+    public int createEmployee(int companyId) {
+        token = getToken(xClientsLogin, xClientsPassword);
+        CreateEmployee createEmployee = new CreateEmployee
+                (employeeName, employeeLastName, companyId, employeeEmail, employeePhone);
+        return given()
+                .log().all()
+                .body(createEmployee)
+                .header("x-client-token", token)
+                .contentType(ContentType.JSON)
+                .when()
+                .post(URL_CREATE_EMPLOYEE)
+                .then()
+                .log().all()
+                .extract().path("id");
+    }
 
     public int createEmployeeToNotExistingCompany(int companyId) {
         token = getToken(xClientsLogin, xClientsPassword);
@@ -99,6 +85,7 @@ public class XClientsWebClient {
                 .extract().statusCode();
     }
 
+    @Step("Удалить компанию в приложении")
     public void deleteCompany(int companyId) {
         token = getToken(xClientsLogin, xClientsPassword);
         given().log().all()

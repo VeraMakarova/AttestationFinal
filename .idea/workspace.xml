@@ -4,27 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8d93ef5-5f21-4fb6-b922-d38d0deaf028" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/inno/course/db/XClientsRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/inno/course/db/XClientsRepositoryJDBC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/inno/course/db/model/CompanyDB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/inno/course/helper/ConfigHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/inno/course/web/XClientsWebClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/inno/course/web/model/Company.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/inno/course/web/model/CreateEmployee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/inno/course/web/model/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/AttestationFinal.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/inno/course/Task1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/inno/course/Task2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/inno/course/Task3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/inno/course/Task4.java" afterDir="false" />
+    <list default="true" id="a8d93ef5-5f21-4fb6-b922-d38d0deaf028" name="Changes" comment="init commit&#10;&#10;tests for Tasks1-4 added">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/inno/course/db/model/EmployeeDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/inno/course/db/XClientsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/inno/course/db/XClientsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/inno/course/db/XClientsRepositoryJDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/inno/course/db/XClientsRepositoryJDBC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/inno/course/db/model/CompanyDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/inno/course/db/model/CompanyDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/inno/course/web/XClientsWebClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/inno/course/web/XClientsWebClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AttestationFinal.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AttestationFinal.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/inno/course/Task1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/inno/course/Task1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/inno/course/Task2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/inno/course/Task2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/inno/course/Task3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/inno/course/Task3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/inno/course/Task4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/inno/course/Task4.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,8 +27,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Record" />
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -67,6 +59,7 @@
     "JUnit.Task3.xxx.executor": "Run",
     "JUnit.Task4.check.executor": "Run",
     "JUnit.Task4.checkDeletedCompany.executor": "Run",
+    "JUnit.Task4.checkNotDeletedCompany.executor": "Run",
     "JUnit.Task4.qqq.executor": "Run",
     "JUnit.XClientsTests.iCanCreateCompanyViaDB.executor": "Run",
     "JUnit.XClientsTests.iCanFilterCompaniesByIsActive.executor": "Run",
@@ -79,7 +72,7 @@
     "last_opened_file_path": "/Users/veramakarova/IdeaProjects/AttestationFinal"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.Task4.checkDeletedCompany">
+  <component name="RunManager" selected="JUnit.course in AttestationFinal">
     <configuration name="Task1.iCanFilterCompaniesByIsActive" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="AttestationFinal" />
       <extension name="coverage">
@@ -96,7 +89,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Task2.iCannotCreateEmployeeToNotExistingCompany2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Task2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="AttestationFinal" />
       <extension name="coverage">
         <pattern>
@@ -106,40 +99,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="ru.inno.course" />
       <option name="MAIN_CLASS_NAME" value="ru.inno.course.Task2" />
-      <option name="METHOD_NAME" value="iCannotCreateEmployeeToNotExistingCompany2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Task3.checkInactiveEmployee2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="AttestationFinal" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.inno.course.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.inno.course" />
-      <option name="MAIN_CLASS_NAME" value="ru.inno.course.Task3" />
-      <option name="METHOD_NAME" value="checkInactiveEmployee2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Task3.qqq" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="AttestationFinal" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.inno.course.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.inno.course" />
-      <option name="MAIN_CLASS_NAME" value="ru.inno.course.Task3" />
-      <option name="METHOD_NAME" value="qqq" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -160,13 +120,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Task4.checkNotDeletedCompany" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AttestationFinal" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.inno.course.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.inno.course" />
+      <option name="MAIN_CLASS_NAME" value="ru.inno.course.Task4" />
+      <option name="METHOD_NAME" value="checkNotDeletedCompany" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="course in AttestationFinal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AttestationFinal" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/ru/inno/course" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.course in AttestationFinal" />
+        <item itemvalue="JUnit.Task2" />
+        <item itemvalue="JUnit.Task4.checkNotDeletedCompany" />
         <item itemvalue="JUnit.Task4.checkDeletedCompany" />
         <item itemvalue="JUnit.Task1.iCanFilterCompaniesByIsActive" />
-        <item itemvalue="JUnit.Task3.checkInactiveEmployee2" />
-        <item itemvalue="JUnit.Task2.iCannotCreateEmployeeToNotExistingCompany2" />
-        <item itemvalue="JUnit.Task3.qqq" />
       </list>
     </recent_temporary>
   </component>
@@ -179,6 +163,19 @@
       <option name="presentableId" value="Default" />
       <updated>1717340523820</updated>
     </task>
+    <task id="LOCAL-00001" summary="init commit&#10;&#10;tests for Tasks1-4 added">
+      <option name="closed" value="true" />
+      <created>1718430621769</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1718430621769</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init commit&#10;&#10;tests for Tasks1-4 added" />
+    <option name="LAST_COMMIT_MESSAGE" value="init commit&#10;&#10;tests for Tasks1-4 added" />
   </component>
 </project>
