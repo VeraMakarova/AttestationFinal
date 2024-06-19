@@ -19,7 +19,7 @@ import java.util.List;
 import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class Task3 {
+public class Task3Test {
     private XClientsRepository repository;
     private XClientsWebClient client;
     private String companyName;
@@ -41,8 +41,8 @@ public class Task3 {
 
     @AfterEach
     public void tearDown() throws SQLException {
-        repository.deleteEmployeeDBById(employeeId);
-        repository.deleteCompanyDBById(companyId);
+        step("Удалить сотрудника", () ->repository.deleteEmployeeDBById(employeeId));
+        step("Удалить компанию", () -> repository.deleteCompanyDBById(companyId));
         repository.close();
     }
 
@@ -56,7 +56,7 @@ public class Task3 {
         step("Сделать сотрудника неактивным в БД", () -> repository.updateEmployeeIsActiveFalse(employeeId));
         List<Employee> employeeList = step("Получить список сотрудников компании",
                 () -> client.getEmployeeList(companyId));
-        step("Проверяем, что список пустой (единственный сотрудник неактивный и не должен отображаться в списке)",
+        step("Проверить, что список пустой (единственный сотрудник неактивный и не должен отображаться в списке)",
                 () -> assertTrue(employeeList.isEmpty()));
     }
 }

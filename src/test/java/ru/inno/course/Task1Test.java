@@ -13,7 +13,6 @@ import ru.inno.course.helper.ConfigHelper;
 import ru.inno.course.web.XClientsWebClient;
 import ru.inno.course.web.model.Company;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -21,7 +20,7 @@ import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class Task1 {
+public class Task1Test {
 
     private XClientsRepository repository;
     private XClientsWebClient client;
@@ -31,7 +30,7 @@ public class Task1 {
     private String password;
 
     @BeforeEach
-    public void setUp() throws IOException, SQLException {
+    public void setUp() throws SQLException {
         connectionString = ConfigHelper.getConnectionString();
         user = ConfigHelper.getUser();
         password = ConfigHelper.getPassword();
@@ -49,10 +48,10 @@ public class Task1 {
     @DisplayName("Фильтрация компаний по active")
     @Description("Проверяем, что список компаний фильтруется по параметру active")
     @Severity(SeverityLevel.NORMAL)
-    void iCanFilterCompaniesByIsActive() throws SQLException {
+    void iCanFilterCompaniesByIsActive() {
         int[] testCompanies = new int[4];
         for (int i = 0; i < testCompanies.length; i++) {
-            testCompanies[i] =  step("Создать компанию в БД", () -> repository.createCompanyDB(companyName));
+            testCompanies[i] = step("Создать компанию в БД", () -> repository.createCompanyDB(companyName));
         }
 
         step("Деактивировать компанию 1 в БД", () -> repository.updateCompanyIsActivaFalse(testCompanies[0]));
@@ -61,7 +60,7 @@ public class Task1 {
         List<Company> companiesList =
                 step("Получить список неактивных компаний", () -> client.getActiveCompanies(false));
         for (Company company : companiesList) {
-            step("Проверить, что в списке все компании неактивные", () -> assertTrue(!company.isActive()));
+            step("Проверить, что все компании в списке неактивные", () -> assertTrue(!company.isActive()));
         }
 
         List<Company> companiesList2 =
@@ -71,8 +70,7 @@ public class Task1 {
         }
 
         for (int companyID : testCompanies) {
-             step("Удалить компанию из БД", () -> repository.deleteCompanyDBById(companyID));
+            step("Удалить компанию из БД", () -> repository.deleteCompanyDBById(companyID));
         }
     }
-
 }

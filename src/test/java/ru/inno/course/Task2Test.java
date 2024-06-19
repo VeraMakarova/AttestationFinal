@@ -21,13 +21,15 @@ import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class Task2 {
+public class Task2Test {
     private XClientsRepository repository;
     private XClientsWebClient client;
     private String companyName;
     private String connectionString;
     private String dbUser;
     private String dbPassword;
+    private int employeeId;
+    private int companyId;
 
     @BeforeEach
     public void setUp() throws SQLException {
@@ -62,14 +64,16 @@ public class Task2 {
     @Description("Проверяем, что возможно создать сотрудника в существующню компанию")
     @Severity(SeverityLevel.CRITICAL)
     public void iCanCreateEmployeeToExistingCompany() throws SQLException {
-        int companyId = step("Создать компанию в БД", () -> repository.createCompanyDB(companyName));
+        companyId = step("Создать компанию в БД", () -> repository.createCompanyDB(companyName));
 
-        int employeeId = step("Создать сотрудника в компанию",
+        employeeId = step("Создать сотрудника в компанию",
                 () -> client.createEmployee(companyId));
         EmployeeDB employeeDB =
                 step("Получить информацию о сотруднике из БД", () -> repository.getEmployeeDBById(employeeId));
         step("Проверить, что у пользователя правильный ID", () -> assertEquals(employeeId, employeeDB.id()));
         step("Проверить, что имя пользователя сохраняется правильно",
                 () -> assertEquals(ConfigHelper.getEmployeeFirstName(), employeeDB.firstName()));
+        step("Удалить сотрудника", () -> repository.deleteEmployeeDBById(employeeId));
+        step("Удалить компанию", () -> repository.deleteCompanyDBById(companyId));
     }
 }

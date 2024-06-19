@@ -17,7 +17,7 @@ public class XClientsWebClient {
     public static final String URL_CREATE_EMPLOYEE = ConfigHelper.getURL_CREATE_EMPLOYEE();
     public static final String URL_GET_EMPLOYEE_LIST = ConfigHelper.getURL_GET_EMPLOYEE_LIST();
     public static final String URL_DELETE_COMPANY = ConfigHelper.getURL_DELETE_COMPANY();
-    public String employeeName = ConfigHelper.getEmployeeFirstName();
+    private String employeeName = ConfigHelper.getEmployeeFirstName();
     private String employeeLastName = ConfigHelper.getEmployeeLastName();
     private String employeeEmail = ConfigHelper.getEmployeeEmail();
     private String employeePhone = ConfigHelper.getEmployeePhone();

@@ -21,7 +21,7 @@ public class XClientsRepositoryJDBC implements XClientsRepository {
     private static final String SQL_UPDATE_EMPLOYEE_IS_ACTIVE_FALSE =
             "UPDATE employee SET is_active = false WHERE id = ?";
     private static final String SQL_SELECT_COMPANY_BY_ID = "SELECT * FROM company WHERE id = ?";
-    private static final String  SQL_SELECT_EMP_BY_ID = "SELECT * FROM employee where id = ?";
+    private static final String SQL_SELECT_EMP_BY_ID = "SELECT * FROM employee where id = ?";
 
     private String employeeName = ConfigHelper.getEmployeeFirstName();
     private String employeeLastName = ConfigHelper.getEmployeeLastName();
@@ -127,5 +127,4 @@ public class XClientsRepositoryJDBC implements XClientsRepository {
                 resultSet.getBoolean("is_active"));
         return employeeDB;
     }
-
 }

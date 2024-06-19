@@ -17,8 +17,4 @@ public interface XClientsRepository {
     CompanyDB getCompanyDBById(int id) throws SQLException;
     EmployeeDB getEmployeeDBById(int id) throws SQLException;
 
-
-
-
-
 }

@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class Task4 {
+public class Task4Test {
     private XClientsRepository repository;
     private XClientsWebClient client;
     private String companyName;
@@ -39,7 +39,7 @@ public class Task4 {
 
     @AfterEach
     public void tearDown() throws SQLException {
-        repository.deleteCompanyDBById(companyId);
+        step("Удалить компанию", () -> repository.deleteCompanyDBById(companyId));
         repository.close();
     }
 
