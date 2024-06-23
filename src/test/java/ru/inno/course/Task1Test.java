@@ -50,27 +50,40 @@ public class Task1Test {
     @Severity(SeverityLevel.NORMAL)
     void iCanFilterCompaniesByIsActive() {
         int[] testCompanies = new int[4];
-        for (int i = 0; i < testCompanies.length; i++) {
-            testCompanies[i] = step("Создать компанию в БД", () -> repository.createCompanyDB(companyName));
-        }
+
+        step("Создать 4 компании в БД", () -> {
+            for (int i = 0; i < testCompanies.length; i++) {
+                testCompanies[i] = repository.createCompanyDB(companyName);
+            }
+        });
 
         step("Деактивировать компанию 1 в БД", () -> repository.updateCompanyIsActivaFalse(testCompanies[0]));
         step("Деактивировать компанию 3 в БД", () -> repository.updateCompanyIsActivaFalse(testCompanies[2]));
 
         List<Company> companiesList =
                 step("Получить список неактивных компаний", () -> client.getActiveCompanies(false));
-        for (Company company : companiesList) {
-            step("Проверить, что все компании в списке неактивные", () -> assertTrue(!company.isActive()));
-        }
+
+        step("Проверить, что все компании в списке неактивные", () -> {
+            for (Company company : companiesList) {
+                assertTrue(!company.isActive());
+            }
+        });
 
         List<Company> companiesList2 =
                 step("Получить список активных компаний", () -> client.getActiveCompanies(true));
-        for (Company company : companiesList2) {
-            step("Проверить, что все компании в списке активные", () -> assertTrue(company.isActive()));
-        }
 
-        for (int companyID : testCompanies) {
-            step("Удалить компанию из БД", () -> repository.deleteCompanyDBById(companyID));
-        }
+        step("Проверить, что все компании в списке активные", () -> {
+            for (Company company : companiesList2) {
+                assertTrue(company.isActive());
+            }
+        });
+
+
+        step("Удалить все созданные в тесте компании из БД", () -> {
+            for (int companyID : testCompanies) {
+                repository.deleteCompanyDBById(companyID);
+            }
+        });
+
     }
 }
