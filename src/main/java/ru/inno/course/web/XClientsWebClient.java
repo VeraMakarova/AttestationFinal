@@ -17,13 +17,13 @@ public class XClientsWebClient {
     public static final String URL_CREATE_EMPLOYEE = ConfigHelper.getURL_CREATE_EMPLOYEE();
     public static final String URL_GET_EMPLOYEE_LIST = ConfigHelper.getURL_GET_EMPLOYEE_LIST();
     public static final String URL_DELETE_COMPANY = ConfigHelper.getURL_DELETE_COMPANY();
-    private String employeeName = ConfigHelper.getEmployeeFirstName();
-    private String employeeLastName = ConfigHelper.getEmployeeLastName();
-    private String employeeEmail = ConfigHelper.getEmployeeEmail();
-    private String employeePhone = ConfigHelper.getEmployeePhone();
+    private final String employeeName = ConfigHelper.getEmployeeFirstName();
+    private final String employeeLastName = ConfigHelper.getEmployeeLastName();
+    private final String employeeEmail = ConfigHelper.getEmployeeEmail();
+    private final String employeePhone = ConfigHelper.getEmployeePhone();
     private String token;
-    private String xClientsLogin = ConfigHelper.getXClientsLogin();
-    private String xClientsPassword = ConfigHelper.getXClientsPassword();
+    private final String xClientsLogin = ConfigHelper.getXClientsLogin();
+    private final String xClientsPassword = ConfigHelper.getXClientsPassword();
 
     public String getToken(String login, String pass) {
         String creds = "{\"username\": \"" + login + "\",\"password\": \"" + pass + "\"}";

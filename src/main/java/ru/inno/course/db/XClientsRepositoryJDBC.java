@@ -23,9 +23,9 @@ public class XClientsRepositoryJDBC implements XClientsRepository {
     private static final String SQL_SELECT_COMPANY_BY_ID = "SELECT * FROM company WHERE id = ?";
     private static final String SQL_SELECT_EMP_BY_ID = "SELECT * FROM employee where id = ?";
 
-    private String employeeName = ConfigHelper.getEmployeeFirstName();
-    private String employeeLastName = ConfigHelper.getEmployeeLastName();
-    private String employeePhone = ConfigHelper.getEmployeePhone();
+    private final String employeeName = ConfigHelper.getEmployeeFirstName();
+    private final String employeeLastName = ConfigHelper.getEmployeeLastName();
+    private final String employeePhone = ConfigHelper.getEmployeePhone();
 
     public XClientsRepositoryJDBC(String connectionString, String user, String pass) throws SQLException {
         this.connection = DriverManager.getConnection(connectionString, user, pass);
@@ -101,14 +101,13 @@ public class XClientsRepositoryJDBC implements XClientsRepository {
         ResultSet resultSet = statement.executeQuery();
         resultSet.next();
 
-        CompanyDB companyDB = new CompanyDB(
+       return new CompanyDB(
                 resultSet.getInt("id"),
                 resultSet.getBoolean("is_active"),
                 resultSet.getTimestamp("create_timestamp"),
                 resultSet.getString("name"),
                 resultSet.getString("description"),
                 resultSet.getTimestamp("deleted_at"));
-        return companyDB;
     }
 
     @Override
@@ -117,7 +116,7 @@ public class XClientsRepositoryJDBC implements XClientsRepository {
         statement.setInt(1, id);
         ResultSet resultSet = statement.executeQuery();
         resultSet.next();
-        EmployeeDB employeeDB = new EmployeeDB(
+        return new EmployeeDB(
                 resultSet.getInt("id"),
                 resultSet.getString("first_name"),
                 resultSet.getString("last_name"),
@@ -125,6 +124,5 @@ public class XClientsRepositoryJDBC implements XClientsRepository {
                 resultSet.getString("email"),
                 resultSet.getString("phone"),
                 resultSet.getBoolean("is_active"));
-        return employeeDB;
     }
 }

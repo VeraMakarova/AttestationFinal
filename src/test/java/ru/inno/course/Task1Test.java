@@ -25,15 +25,12 @@ public class Task1Test {
     private XClientsRepository repository;
     private XClientsWebClient client;
     private String companyName;
-    private String connectionString;
-    private String user;
-    private String password;
 
     @BeforeEach
     public void setUp() throws SQLException {
-        connectionString = ConfigHelper.getConnectionString();
-        user = ConfigHelper.getUser();
-        password = ConfigHelper.getPassword();
+        String connectionString = ConfigHelper.getConnectionString();
+        String user = ConfigHelper.getUser();
+        String password = ConfigHelper.getPassword();
         repository = new XClientsRepositoryJDBC(connectionString, user, password);
         companyName = ConfigHelper.getcCompanyName();
         client = new XClientsWebClient();
@@ -78,12 +75,10 @@ public class Task1Test {
             }
         });
 
-
         step("Удалить все созданные в тесте компании из БД", () -> {
             for (int companyID : testCompanies) {
                 repository.deleteCompanyDBById(companyID);
             }
         });
-
     }
 }
